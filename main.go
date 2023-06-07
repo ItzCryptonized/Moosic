@@ -10,7 +10,17 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/joho/godotenv"
 )
+
+func init() {
+	godotenv.Load()
+
+	if os.Getenv("PORT") == "" {
+		fmt.Println("No port provided, using default port 3000")
+		os.Setenv("PORT", "3000")
+	}
+}
 
 func GenerateAudioClip(inputFile string, time string) {
 	os.Mkdir("songs/"+inputFile, 0777)
@@ -69,7 +79,7 @@ func main() {
 		InitialiseSong(song.Name())
 	}
 
-	fmt.Println("Server started on port 8080")
+	fmt.Println("Server started on port " + os.Getenv("PORT"))
 
 	r := chi.NewRouter()
 	r.Use(middleware.Recoverer)
@@ -85,5 +95,5 @@ func main() {
 	r.Post("/guess", routes.Guess)
 	r.Post("/finish", routes.Finish)
 
-	http.ListenAndServe(":8080", r)
+	http.ListenAndServe(":"+os.Getenv("PORT"), r)
 }
