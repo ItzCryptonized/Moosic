@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>Music</title>
+        <link rel="stylesheet" href="css/music.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/js/tabler.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <style>
+            .progress-line {
+                width: 1px;
+                height: 100%;
+                background-color: #fff;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                transform: translateX(-0.5px);
+            }
+        </style>
+    </head>
+    <body class="theme-dark">
+        <div class="container-xl h-100 d-flex justify-content-center align-items-center">
+            <div class="card">
+                <div class="card-body">
+                    <form autocomplete="off" id="guess-song">
+                        <div class="row">
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <input class="form-control w-50 my-2" value="" id="progress-status-1" disabled>
+                                <input class="form-control w-50 my-2" value="" id="progress-status-2" disabled>
+                                <input class="form-control w-50 my-2" value="" id="progress-status-3" disabled>
+                                <input class="form-control w-50 my-2" value="" id="progress-status-4" disabled>
+                                <input class="form-control w-50 my-2" value="" id="progress-status-5" disabled>
+                                <input class="form-control w-50 my-2" value="" id="progress-status-6" disabled>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="progress m-0 p-0" role="progressbar" aria-label="Basic example" >
+                                <div id="progressBar" class="progress-bar" style="width: 0;"></div>
+                                <div class="progress-line" style="left: 2%;"></div>
+                                <div class="progress-line" style="left: 5%;"></div>
+                                <div class="progress-line" style="left: 8%;"></div>
+                                <div class="progress-line" style="left: 25%;"></div>
+                                <div class="progress-line" style="left: 50%;"></div>
+                            </div> 
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-auto">
+                                <button class="btn btn-outline-success" id="btn-play-audio" type="button"><i class="fa-solid fa-play"></i></button>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-outline-warning" id="btn-skip" type="button"><i class="fa-solid fa-forward"></i></button>
+                            </div>
+                            <div class="col-lg">
+                                <input type="text" class="form-control w-100" placeholder="Song Name" id="song-guess">
+                            </div>
+                            <div class="col-lg-3">
+                                <button type="submit" class="btn btn-outline-success w-100">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal modal-blur fade" id="modal-game" tabindex="-1" role="dialog" aria-modal="true" data-bs-keyboard="false" data-bs-backdrop="static">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Round Over</h5>
+                </div>
+                <div class="modal-body">
+                    <p id="game-status"></p>
+                    <p>The song was: <b id="song-name"></b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='/'">Play Again</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <script> 
+            var AllSongs = {{ .AllSongNames }} 
+        </script>
+        <script src="js/music.js"></script>
+    </body>
+</html>

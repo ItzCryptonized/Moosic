@@ -1,0 +1,5 @@
+To add a song:
+
+- Download the mp3 file into the inputs folder
+- Rename the file to the format: `artist - title.mp3`
+- Wait until all songs are removed from the inputs folder (this may take a while)
